@@ -60,6 +60,9 @@
  */
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + _array_size_chk(arr))
 
+#if !defined(__GLIBC__)
+#define basename(src) (strrchr(src,'/') ? strrchr(src,'/')+1 : src)
+#endif
 
 #define DIE_PREFIX "[" PACKAGE_NAME "] ERR: "
 #define LOG_SUFFIX "\n"
